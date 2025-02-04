@@ -16,6 +16,7 @@ test.beforeAll(async ({ browser }) => {
 })
 
 test.afterAll(async ({ }) => {
+    await page.locator(data_input.goto_logout).waitFor();
     await page.locator(data_input.goto_logout).click();
     await page.getByText(data_input.logout).click();
     await page.close();
