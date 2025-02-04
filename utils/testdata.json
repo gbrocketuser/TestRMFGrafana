@@ -1,0 +1,8 @@
+{
+        "title": "Grafana",
+        "banner_title": "Welcome to Grafana",
+        "plugin_info": "IBM RMF",
+        "breadcrum_home": "Home",
+        "plugin_enable": "Enable",
+        "plugin_disable": "Disable"
+    }
