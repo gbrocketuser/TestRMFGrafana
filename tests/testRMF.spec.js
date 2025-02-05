@@ -42,7 +42,7 @@ test.afterAll(async ({ }) => {
     await page.close();
 })
 
-test.only('enable IBM-RMF plugin', async () => {
+test('enable IBM-RMF plugin', async () => {
     
     const welcome_Page = new welcomepage(page);
     const plugin_page = new adminpage(page);
@@ -58,7 +58,7 @@ test.only('enable IBM-RMF plugin', async () => {
 });
 
 
-test.only('disable IBM-RMF plugin', async () => {
+test('disable IBM-RMF plugin', async () => {
   
     const welcome_Page = new welcomepage(page);
     const plugin_page = new adminpage(page);
