@@ -6,13 +6,14 @@ const { adminpage } = require('../GrafanaPages/adminPage');
 
 const data_input = 
 {
-    url: ["https://lnxrrmf2:3010/login", "v10"],
-    "user_name": ["[name='user']", "admin"],
-    "user_pwd":  ["[name='password']", "admin"],
-    "user_submit" : "[type='submit']",
-    "pwd_skip" : "Skip",
-    "goto_logout": "[alt='User avatar']",
-    "logout" : "Sign out"
+    url: "https://lnxrrmf2:3010/login",
+    version : "v10",
+    user_name: "admin",
+    user_pwd: "admin",
+    user_submit : "[type='submit']",
+    pwd_skip : "Skip",
+    goto_logout: "[alt='User avatar']",
+    logout : "Sign out"
 };
 
 const test_data = {
@@ -24,24 +25,25 @@ const test_data = {
     "plugin_disable": "Disable"
 };
 
+let page;
 
-
-test.beforeEach(async ({ page }) => {
-    await page.goto(data_input.url[0]);
-    await page.locator(data_input.user_name[0]).fill(data_input.user_name[1]);
-    await page.locator(data_input.user_pwd[0]).fill(data_input.user_pwd[1]);
+test.beforeAll(async ({ browser }) => {
+    page = await browser.newPage();
+    await page.goto(data_input.url);
+    await page.locator("[name='user']").fill(data_input.user_name);
+    await page.locator("[name='password']").fill(data_input.user_pwd);
     await page.locator(data_input.user_submit).click();
     await page.getByText(data_input.pwd_skip).click();
 })
 
-test.afterEach (async ({page}) => {
+test.afterAll(async ({ }) => {
     await page.locator(data_input.goto_logout).click();
     await page.getByText(data_input.logout).waitFor();
     await page.getByText(data_input.logout).click();
     await page.close();
 })
 
-test('enable IBM-RMF plugin', async ({page}) => {
+test.only('enable IBM-RMF plugin', async () => {
     
     const welcome_Page = new welcomepage(page);
     const plugin_page = new adminpage(page);
@@ -51,13 +53,13 @@ test('enable IBM-RMF plugin', async ({page}) => {
     await welcome_Page.apps_link_hidden();
     await welcome_Page.admin_page();
 
-    await plugin_page.add_plugin(data_input.url[1]);
+    await plugin_page.add_plugin(data_input.version);
     await plugin_page.select_plugin(test_data.plugin_info);
     await plugin_page.plugin(test_data.plugin_enable, test_data.breadcrum_home);
 });
 
 
-test('disable IBM-RMF plugin', async ({page}) => {
+test.only('disable IBM-RMF plugin', async () => {
   
     const welcome_Page = new welcomepage(page);
     const plugin_page = new adminpage(page);
@@ -66,7 +68,7 @@ test('disable IBM-RMF plugin', async ({page}) => {
     await welcome_Page.apps_link_present();
     await welcome_Page.admin_page();
 
-    await plugin_page.add_plugin(data_input.url[1]);
+    await plugin_page.add_plugin(data_input.version);
     await plugin_page.select_plugin(test_data.plugin_info);
     await plugin_page.plugin(test_data.plugin_disable, test_data.breadcrum_home);
 });
