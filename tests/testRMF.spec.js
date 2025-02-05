@@ -1,8 +1,28 @@
 const { test } = require('@playwright/test');
 const { welcomepage } = require('../GrafanaPages/welcomePage');
 const { adminpage } = require('../GrafanaPages/adminPage');
-const data_input = JSON.parse(JSON.stringify(require('../utils/credentials.json')));
-const test_data =JSON.parse(JSON.stringify(require("../utils/testdata.json")));
+// const data_input = JSON.parse(JSON.stringify(require('../utils/credentials.json')));
+// const test_data =JSON.parse(JSON.stringify(require("../utils/testdata.json")));
+
+const data_input = 
+{
+    url: ["https://lnxrrmf2:3010/login", "v10"],
+    "user_name": ["[name='user']", "admin"],
+    "user_pwd":  ["[name='password']", "admin"],
+    "user_submit" : "[type='submit']",
+    "pwd_skip" : "Skip",
+    "goto_logout": "[alt='User avatar']",
+    "logout" : "Sign out"
+};
+
+const test_data = {
+    "title": "Grafana",
+    "banner_title": "Welcome to Grafana",
+    "plugin_info": "IBM RMF",
+    "breadcrum_home": "Home",
+    "plugin_enable": "Enable",
+    "plugin_disable": "Disable"
+};
 
 let page;
 
@@ -22,7 +42,7 @@ test.afterAll(async ({ }) => {
     await page.close();
 })
 
-test('enable IBM-RMF plugin', async () => {
+test.only('enable IBM-RMF plugin', async () => {
     
     const welcome_Page = new welcomepage(page);
     const plugin_page = new adminpage(page);
@@ -38,7 +58,7 @@ test('enable IBM-RMF plugin', async () => {
 });
 
 
-test('disable IBM-RMF plugin', async () => {
+test.only('disable IBM-RMF plugin', async () => {
   
     const welcome_Page = new welcomepage(page);
     const plugin_page = new adminpage(page);
