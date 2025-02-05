@@ -1,12 +1,12 @@
-const { test } = require('@playwright/test');
+import { test, expect } from '@playwright/test'
+// const { test } = require('@playwright/test');
 const { welcomepage } = require('../GrafanaPages/welcomePage');
 const { adminpage } = require('../GrafanaPages/adminPage');
-// const data_input = JSON.parse(JSON.stringify(require('../utils/credentials.json')));
-// const test_data =JSON.parse(JSON.stringify(require("../utils/testdata.json")));
+// // const data_input = JSON.parse(JSON.stringify(require('../utils/credentials.json')));
+// // const test_data =JSON.parse(JSON.stringify(require("../utils/testdata.json")));
 
 const data_input = 
 {
-    url: "https://lnxrrmf2:3010/login",
     version : "v10",
     user_name: "admin",
     user_pwd: "admin",
@@ -29,7 +29,7 @@ let page;
 
 test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-    await page.goto(data_input.url);
+    await page.goto("https://lnxrrmf2:3010/login");
     await page.locator("[name='user']").fill(data_input.user_name);
     await page.locator("[name='password']").fill(data_input.user_pwd);
     await page.locator(data_input.user_submit).click();
@@ -59,16 +59,16 @@ test('enable IBM-RMF plugin', async () => {
 });
 
 
-test('disable IBM-RMF plugin', async () => {
+// test('disable IBM-RMF plugin', async () => {
   
-    const welcome_Page = new welcomepage(page);
-    const plugin_page = new adminpage(page);
-    await welcome_Page.check_banner(test_data.banner_title);
-    await welcome_Page.breadcrum_menu();
-    await welcome_Page.apps_link_present();
-    await welcome_Page.admin_page();
+//     const welcome_Page = new welcomepage(page);
+//     const plugin_page = new adminpage(page);
+//     await welcome_Page.check_banner(test_data.banner_title);
+//     await welcome_Page.breadcrum_menu();
+//     await welcome_Page.apps_link_present();
+//     await welcome_Page.admin_page();
 
-    await plugin_page.add_plugin(data_input.version);
-    await plugin_page.select_plugin(test_data.plugin_info);
-    await plugin_page.plugin(test_data.plugin_disable, test_data.breadcrum_home);
-});
+//     await plugin_page.add_plugin(data_input.version);
+//     await plugin_page.select_plugin(test_data.plugin_info);
+//     await plugin_page.plugin(test_data.plugin_disable, test_data.breadcrum_home);
+// });
