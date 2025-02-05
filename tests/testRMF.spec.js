@@ -24,10 +24,9 @@ const test_data = {
     "plugin_disable": "Disable"
 };
 
-let page;
 
-test.beforeAll(async ({ browser }) => {
-    page = await browser.newPage();
+
+test.beforeEach(async ({ page }) => {
     await page.goto(data_input.url[0]);
     await page.locator(data_input.user_name[0]).fill(data_input.user_name[1]);
     await page.locator(data_input.user_pwd[0]).fill(data_input.user_pwd[1]);
@@ -35,14 +34,14 @@ test.beforeAll(async ({ browser }) => {
     await page.getByText(data_input.pwd_skip).click();
 })
 
-test.afterAll(async ({ }) => {
+test.afterEach (async ({page}) => {
     await page.locator(data_input.goto_logout).click();
     await page.getByText(data_input.logout).waitFor();
     await page.getByText(data_input.logout).click();
     await page.close();
 })
 
-test('enable IBM-RMF plugin', async () => {
+test('enable IBM-RMF plugin', async ({page}) => {
     
     const welcome_Page = new welcomepage(page);
     const plugin_page = new adminpage(page);
@@ -58,7 +57,7 @@ test('enable IBM-RMF plugin', async () => {
 });
 
 
-test('disable IBM-RMF plugin', async () => {
+test('disable IBM-RMF plugin', async ({page}) => {
   
     const welcome_Page = new welcomepage(page);
     const plugin_page = new adminpage(page);
