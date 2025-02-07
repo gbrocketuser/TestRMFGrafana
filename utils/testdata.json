@@ -4,5 +4,9 @@
         "plugin_info": "IBM RMF",
         "breadcrum_home": "Home",
         "plugin_enable": "Enable",
-        "plugin_disable": "Disable"
+        "plugin_disable": "Disable",
+        "datasource_title": "IBM RMF for z/OS Grafana Plugin",
+        "datasource_manager": "IBM RMF Plugin Manager",
+        "add_datasource": "Add RMF Data Source",
+        "datasource_header" : "IBM RMF for z/OS"
     }

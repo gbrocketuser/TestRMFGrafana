@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { expect } = require('@playwright/test');
 
 
 class welcomepage {
@@ -26,18 +26,21 @@ class welcomepage {
 
     async apps_link_hidden() {
         const apps = await this.apps_link.isHidden();
-        expect(apps).toBeTruthy();       
+        expect(apps).toBeTruthy();
     }
 
     async apps_link_present() {
         const apps = await this.apps_link.isHidden();
         expect(apps).toBeFalsy();
-       
+    }
+
+    async apps_link_click() {
+        await this.apps_link.click();
     }
 
     async admin_page() {
         await this.admin_link.click();
-       
+
     }
 }
 module.exports = { welcomepage }

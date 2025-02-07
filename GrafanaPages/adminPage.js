@@ -29,13 +29,15 @@ class adminpage {
     }
 
 
-    async plugin(option, goto) {
+    async plugin(option) {
         await this.page.getByRole("button", { name: option }).first().click();
-        await this.page.reload();
-        await this.page.getByText(goto).click();
-
     }
 
+    async home_breadcrum(goto) {
+        await this.page.reload();
+        await this.page.getByText(goto).waitFor();
+        await this.page.getByText(goto).click();
+    }
 
 }
 module.exports = { adminpage }
