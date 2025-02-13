@@ -1,4 +1,7 @@
 const { expect } = require('@playwright/test');
+const { adminpage } = require('../GrafanaPages/adminPage');
+const data_input = JSON.parse(JSON.stringify(require('../utils/credentials.json')));
+const test_data = JSON.parse(JSON.stringify(require("../utils/testdata.json")));
 
 
 class welcomepage {
@@ -42,5 +45,18 @@ class welcomepage {
         await this.admin_link.click();
 
     }
+
+    async check_apps_link() {
+        if (await this.apps_link.isHidden() === true) {
+            const plugin_page = new adminpage(this.page);
+            await this.admin_page();
+            await plugin_page.add_plugin(data_input.url[1]);
+            await plugin_page.select_plugin(test_data.plugin_info);
+            await plugin_page.plugin(test_data.plugin_enable);
+            await plugin_page.home_breadcrum(test_data.breadcrum_home);
+            await this.breadcrum_menu();
+        }
+    }
+
 }
 module.exports = { welcomepage }
