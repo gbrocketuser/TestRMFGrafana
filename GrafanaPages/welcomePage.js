@@ -11,6 +11,7 @@ class welcomepage {
         this.menu = this.page.locator(".css-1opalb8");
         this.apps_link = this.page.locator("[href='/apps']");
         this.admin_link = this.page.locator("[href='/admin']");
+        this.ibm_rmf = this.page.locator("[href='/a/ibm-rmf/']")
     }
 
     async check_title(title) {
@@ -58,5 +59,10 @@ class welcomepage {
         }
     }
 
+    async expand_apps_link() {
+        await this.page.getByRole('button', { name: 'Expand section Apps' }).click();
+        await this.ibm_rmf.click();
+
+    }
 }
 module.exports = { welcomepage }

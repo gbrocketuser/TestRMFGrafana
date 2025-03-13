@@ -8,8 +8,8 @@ async function globalSetup() {
         });
     const page = await context.newPage();
     await page.goto(data_input.url[0]);
-    await page.locator("[name='user']").fill("xxxx");
-    await page.locator("[name='password']").fill("xxxx");
+    await page.locator("[name='user']").fill("admin");
+    await page.locator("[name='password']").fill("admin");
     await page.locator("[type='submit']").click();
     await page.getByText("Skip").click();
     await page.context().storageState({ path: "./LoginAuth.json" });

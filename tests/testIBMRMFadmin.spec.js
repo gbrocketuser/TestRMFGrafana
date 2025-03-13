@@ -9,7 +9,8 @@ let page;
 
 test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-    await page.goto(data_input.url[0])
+    await page.goto(data_input.url[0]);
+    // await page.goto(data_input.url[0])
 });
 
 // test.afterAll(async ({ }) => {

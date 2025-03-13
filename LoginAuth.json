@@ -1,0 +1,35 @@
+{
+  "cookies": [
+    {
+      "name": "grafana_session",
+      "value": "72722cf7f4235bbe44336987a5ce82f5",
+      "domain": "lnxrrmf2",
+      "path": "/",
+      "expires": 1743762862.943127,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "grafana_session_expiry",
+      "value": "1741171459",
+      "domain": "lnxrrmf2",
+      "path": "/",
+      "expires": 1743762862.943318,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://lnxrrmf2:3333",
+      "localStorage": [
+        {
+          "name": "notifications",
+          "value": "{}"
+        }
+      ]
+    }
+  ]
+}
